@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامج مدارسة سورة الفاتحة وتصحيح تلاوتها - التسجيل مفتوح الآن</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Enhanced Color Palette - Refined for better contrast and visual appeal */
+            --primary-green: #0a5d61;
+            --primary-green-light: #0d7377;
+            --secondary-green: #14a085;
+            --secondary-green-light: #2dd4bf;
+            --accent-gold: #eab308;
+            --accent-gold-dark: #ca8a04;
+            --accent-gold-light: #fcd34d;
+            --dark-blue: #0f172a;
+            --dark-blue-light: #1a365d;
+            --light-bg: #f8fafc;
+            --light-bg-2: #f1f5f9;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            
+            /* Enhanced Shadow System */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-gold: 0 10px 30px -5px rgba(234, 179, 8, 0.3);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            --gradient-hero: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 50%, var(--dark-blue) 100%);
+            --gradient-gold: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-green) 100%);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e8f4f8 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.8;
+            direction: rtl;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Decorative Islamic Pattern Background */
+        .pattern-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 40px, var(--primary-green) 40px, var(--primary-green) 41px),
+                repeating-linear-gradient(-45deg, transparent, transparent 40px, var(--primary-green) 40px, var(--primary-green) 41px);
+            z-index: 0;
+            pointer-events: none;
+            animation: subtleMove 20s ease-in-out infinite;
+        }
+        
+        @keyframes subtleMove {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-10px, 10px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--gradient-hero);
+            color: var(--white);
+            padding: 4rem 0 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -8%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.1); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .header .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+            opacity: 0.96;
+            text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .header .verse {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            font-style: italic;
+            opacity: 0.95;
+            color: var(--accent-gold-light);
+            text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            margin: -3rem auto 4rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-xl);
+            padding: 3.5rem;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(20, 160, 133, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2.75rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--text-medium);
+            margin-bottom: 1.2rem;
+            line-height: 1.9;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: var(--gradient-gold);
+            color: var(--white);
+            padding: 1.3rem 3.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-gold);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 1.5rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 30px -5px rgba(234, 179, 8, 0.5);
+        }
+        
+        .cta-button:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .hero-visual {
+            text-align: center;
+        }
+
+        .quran-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .quran-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            position: relative;
+            z-index: 11;
+            opacity: 1;
+        }
+
+        /* Program Overview */
+        .program-overview {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .program-overview::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.75rem;
+            color: var(--primary-green);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 5px;
+            background: var(--gradient-gold);
+            border-radius: 3px;
+            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.4);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, var(--light-bg) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--secondary-green);
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-bg-2) 100%);
+        }
+        
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Classes Schedule */
+        .classes-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .schedule-info {
+            background: linear-gradient(135deg, rgba(20, 160, 133, 0.08) 0%, rgba(45, 212, 191, 0.08) 100%);
+            border: 2px solid var(--secondary-green);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .schedule-info h3 {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+            align-items: start;
+        }
+
+        .schedule-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+        }
+
+        .schedule-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+            line-height: 1;
+        }
+
+        .schedule-label {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .schedule-value {
+            font-size: 1.15rem;
+            color: var(--primary-green);
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .schedule-start-date {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .schedule-start-date .schedule-label {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-start-date .schedule-value {
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+        }
+
+        .class-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, var(--light-bg) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border-right: 5px solid var(--secondary-green);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .class-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(20, 160, 133, 0.12) 0%, transparent 70%);
+            border-radius: 0 0 0 100%;
+            transition: all 0.4s ease;
+        }
+
+        .class-card:hover {
+            transform: translateX(-8px);
+            box-shadow: var(--shadow-lg);
+            border-right-color: var(--accent-gold);
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-bg-2) 100%);
+        }
+        
+        .class-card:hover::before {
+            width: 200px;
+            height: 200px;
+            opacity: 0.8;
+        }
+
+        .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .class-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.9rem;
+            color: var(--primary-green);
+            font-weight: 700;
+            line-height: 1.5;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .class-badge {
+            background: var(--gradient-gold);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .class-description {
+            margin: 0;
+            color: var(--text-medium);
+            line-height: 1.9;
+            font-size: 1.05rem;
+            text-align: right;
+        }
+
+        .class-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .detail-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-green);
+            width: 40px;
+            text-align: center;
+        }
+
+        .detail-text {
+            flex: 1;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .class-agenda {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-right: 3px solid var(--accent-gold);
+        }
+
+        .agenda-title {
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .agenda-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .agenda-list li {
+            padding: 0.8rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .agenda-list li:last-child {
+            border-bottom: none;
+        }
+
+        .agenda-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--secondary-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Registration Section */
+        .registration-section {
+            background: var(--gradient-dark);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 5rem 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .registration-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .registration-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(20, 160, 133, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .registration-section .section-title {
+            color: var(--white);
+        }
+
+        .registration-section .section-title::after {
+            background: var(--accent-gold);
+        }
+
+        .registration-section .section-title,
+        .registration-section p {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .registration-form {
+            max-width: 600px;
+            margin: 2.5rem auto 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1.1rem 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+            color: var(--text-dark);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-green);
+            box-shadow: 0 0 0 4px rgba(20, 160, 133, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .form-group input::placeholder {
+            color: var(--text-light);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.3rem;
+            background: var(--gradient-gold);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Cairo', sans-serif;
+            box-shadow: var(--shadow-gold);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px -5px rgba(234, 179, 8, 0.5);
+        }
+        
+        .submit-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Form Messages */
+        .form-message {
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            animation: slideIn 0.3s ease-out;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .form-message-success {
+            background: linear-gradient(135deg, rgba(20, 160, 133, 0.15) 0%, rgba(45, 212, 191, 0.15) 100%);
+            border: 2px solid var(--secondary-green);
+            color: var(--secondary-green);
+        }
+        
+        .form-message-error {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(239, 68, 68, 0.15) 100%);
+            border: 2px solid #dc2626;
+            color: #dc2626;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, var(--light-bg) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-right: 5px solid var(--accent-gold);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-right-color: var(--primary-green);
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+        
+        .testimonial-quote::before {
+            content: '"';
+            position: absolute;
+            right: 0;
+            top: -0.5rem;
+            font-size: 3rem;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            font-family: 'Amiri', serif;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            margin-bottom: 2rem;
+            align-items: start;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer-content > .footer-section:last-child {
+            max-width: 350px;
+        }
+        
+        .footer-content > .footer-section:first-child {
+            max-width: 600px;
+        }
+
+        .footer-section {
+            text-align: right;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.2rem;
+            color: var(--accent-gold);
+            text-align: right;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p {
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            direction: rtl;
+            flex-direction: row;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+        }
+        
+        .whatsapp-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-section a:hover .whatsapp-icon {
+            transform: scale(1.15);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+
+            .class-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .registration-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .registration-form {
+                padding: 1.5rem;
+            }
+
+            .schedule-info {
+                padding: 1.5rem;
+            }
+
+            .schedule-info h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+
+            .schedule-item {
+                padding: 0.8rem;
+            }
+
+            .schedule-icon {
+                font-size: 2rem;
+            }
+
+            .schedule-value {
+                font-size: 1rem;
+            }
+
+            .schedule-start-date {
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+            }
+
+            .class-title {
+                font-size: 1.6rem;
+                min-width: 100%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-content > .footer-section:last-child,
+            .footer-content > .footer-section:first-child {
+                max-width: 100%;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .class-card,
+        .stat-card,
+        .testimonial-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Scroll animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .class-card:nth-child(odd) {
+                animation-delay: 0.1s;
+            }
+            .class-card:nth-child(even) {
+                animation-delay: 0.2s;
+            }
+        }
+
+        /* Seats Availability Indicator */
+        .seats-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .seats-available {
+            background: rgba(20, 160, 133, 0.1);
+            color: var(--secondary-green);
+        }
+
+        .seats-limited {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .seats-full {
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="pattern-bg"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>برنامج مدارسة سورة الفاتحة وتصحيح تلاوتها</h1>
+                <p class="subtitle">رحلة تعليمية نحو فهم السبع المثاني</p>
+                <p class="verse">"وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ"</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>ابدأ رحلتك مع سورة الفاتحة</h2>
+                    <p>في رحلة روحية عميقة، نستكشف معاً كنز الفاتحة - السورة التي قسمت الصلاة بين العبد وربه. ليست مجرد قراءة، بل رحلة يتدرج فيها العبد من درجة إلى درجة، في كل آية درجات متعددة من الفهم والاستحضار والخشوع.</p>
+                    <p>هذه الرحلة ستجعلك تذوق الصلاة كما ذاقها رسول الله صلى الله عليه وسلم، وتجد فيها الراحة التي قال عنها "أرحنا بها يا بلال".</p>
+                    <a href="#registration" class="cta-button">سجل الآن - المقاعد محدودة</a>
+                </div>
+                <div class="hero-visual">
+                    <div class="quran-icon">
+                        <img src="https://cdn-icons-png.freepik.com/512/13534/13534590.png" alt="Book Icon" />
+                    </div>
+                    <p style="font-size: 1.2rem; color: var(--text-light); margin-top: 1rem;">
+                        "اقرأ باسم ربك الذي خلق"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Program Overview -->
+        <section class="program-overview">
+            <h2 class="section-title">نظرة عامة على البرنامج</h2>
+            <p style="text-align: center; font-size: 1.15rem; color: var(--text-light); line-height: 1.9; margin-bottom: 2.5rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                برنامج متكامل من 10 محاضرات أونلاين متخصصة. نبدأ من الأساسيات ونصل إلى التطبيق العملي. كل محاضرة تبني على سابقتها لتكوّن فهماً متكاملاً يجعل صلاتك حية بالخشوع والاستحضار. <strong>من صلّى صحيحاً مع الاستحضار والخشوع، أقام الله له الحياة وأدارها له.</strong>
+            </p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">محاضرات أونلاين متخصصة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">مقعد متاح</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="font-size: 2.5rem; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://cdn-icons-png.freepik.com/512/15326/15326871.png" alt="Quran Icon" style="width: 100%; height: 100%; object-fit: contain; max-width: 60px; max-height: 60px;" />
+                    </div>
+                    <div class="stat-label">مشايخ حاصلون على إجازة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="font-size: 3rem;">👤</div>
+                    <div class="stat-label">تلاوة وتصحيح فردي</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lectures Schedule -->
+        <section class="classes-section" id="classes">
+            <h2 class="section-title">جدول المحاضرات</h2>
+
+            <!-- Schedule Information -->
+            <div class="schedule-info">
+                <h3>معلومات البرنامج</h3>
+                <div class="schedule-grid">
+                    <div class="schedule-item">
+                        <div class="schedule-icon">⏱️</div>
+                        <div class="schedule-label">مدة المحاضرة</div>
+                        <div class="schedule-value">30 دقيقة</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-icon">📅</div>
+                        <div class="schedule-label">أيام المحاضرات</div>
+                        <div class="schedule-value">الأحد، الثلاثاء، الخميس</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-icon">🕘</div>
+                        <div class="schedule-label">الوقت</div>
+                        <div class="schedule-value">9:00 مساءً - توقيت القاهرة</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-icon">📆</div>
+                        <div class="schedule-label">مدة البرنامج</div>
+                        <div class="schedule-value">3 أسابيع</div>
+                    </div>
+                </div>
+                <div class="schedule-start-date">
+                    <div class="schedule-label">تاريخ بداية الدفعة القادمة</div>
+                    <div class="schedule-value">7 ديسمبر 2025</div>
+                </div>
+            </div>
+
+            <!-- Lecture 1 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة الأولى: لماذا سميت بهذا الاسم وما أسماؤها</h3>
+                    <span class="class-badge">تمهيدي</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نستكشف في هذه المحاضرة سبب تسمية سورة الفاتحة بهذا الاسم والأسماء المختلفة التي أطلقت عليها، مع بيان الفرق بين هذه الأسماء ودلالاتها العميقة، وأهمية معرفة أسماء السورة في فهم معناها الكامل.
+                </p>
+            </div>
+
+            <!-- Lecture 2 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة الثانية: لماذا لا تصح الصلاة إلا بها</h3>
+                    <span class="class-badge">أساسي</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نتعرف في هذه المحاضرة على الأدلة الشرعية التي تثبت وجوب قراءة الفاتحة في الصلاة، والفرق بينها وبين غيرها من السور، مع بيان حكم من نسي قراءتها والأهمية الروحية والشرعية لهذه السورة العظيمة في الصلاة.
+                </p>
+            </div>
+
+            <!-- Lecture 3 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة الثالثة: ما هي أهم الدروس التي نتعلمها من الفاتحة</h3>
+                    <span class="class-badge">تعليمي</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نستخرج في هذه المحاضرة أهم الدروس والعبر من كل آية في الفاتحة، مع التركيز على التطبيق العملي لهذه الدروس في الحياة اليومية، وكيفية الاستفادة من الفاتحة في بناء الشخصية الإسلامية المتكاملة.
+                </p>
+            </div>
+
+            <!-- Lecture 4 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة الرابعة: لماذا الحمد في أولها وليس الشكر ولا الامتنان</h3>
+                    <span class="class-badge">تحليلي</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نتعمق في هذه المحاضرة في الفرق الدقيق بين الحمد والشكر والامتنان في اللغة والشرع، ونتعرف على الحكمة من اختيار لفظ "الحمد" بالذات في بداية السورة، والدلالات العميقة لهذا الاختيار.
+                </p>
+            </div>
+
+            <!-- Lecture 5 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة الخامسة: ما معنى "قسمت الصلاة بيني وبين عبدي"</h3>
+                    <span class="class-badge">روحي</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نستكشف في هذه المحاضرة الحديث النبوي الشريف عن تقسيم الصلاة، وكيف قسمت الفاتحة بين العبد والرب، مع شرح معنى كل جزء من الفاتحة في هذا التقسيم العجيب والأبعاد الروحية العميقة لهذا التقسيم.
+                </p>
+            </div>
+
+            <!-- Lecture 6 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة السادسة: ما مفهوم العبادة</h3>
+                    <span class="class-badge">فكري</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نتعرف في هذه المحاضرة على مفهوم العبادة في اللغة والشرع، وأنواع العبادة في الإسلام، وكيف تظهر العبادة في سورة الفاتحة، والفرق بين العبادة والطاعة، وكيف نحقق مفهوم العبادة الحقيقي في حياتنا.
+                </p>
+            </div>
+
+            <!-- Lecture 7 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة السابعة: ما هو الطريق المستقيم ولماذا قال الصراط ولم يقل الطريق</h3>
+                    <span class="class-badge">لغوي</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نتعمق في هذه المحاضرة في تعريف الصراط المستقيم في القرآن والسنة، والفرق الدقيق بين لفظ "الصراط" و"الطريق" في اللغة العربية، والحكمة من اختيار لفظ "الصراط" بالذات والدلالات الخاصة لهذا اللفظ.
+                </p>
+            </div>
+
+            <!-- Lecture 8 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة الثامنة: ما مفهوم أصحاب الصراط المستقيم</h3>
+                    <span class="class-badge">أخلاقي</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نتعرف في هذه المحاضرة على من هم أصحاب الصراط المستقيم وصفاتهم المميزة، وكيف نكون من أصحاب هذا الصراط، مع عرض نماذج من أصحاب الصراط المستقيم في التاريخ الإسلامي والتطبيق العملي في حياتنا المعاصرة.
+                </p>
+            </div>
+
+            <!-- Lecture 9 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة التاسعة: من هم المغضوب عليهم ومن هم الضالون</h3>
+                    <span class="class-badge">تحذيري</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نستكشف في هذه المحاضرة تعريف المغضوب عليهم والضالين في القرآن والسنة، والفرق بين هاتين الفئتين، وأسباب غضب الله وضلال الناس، وكيف نتجنب أن نكون من هاتين الفئتين مع استخراج الدروس المستفادة.
+                </p>
+            </div>
+
+            <!-- Lecture 10 -->
+            <div class="class-card">
+                <div class="class-header">
+                    <h3 class="class-title">المحاضرة العاشرة: كيف نحيا بالصلاة مع الفاتحة</h3>
+                    <span class="class-badge">تطبيقي</span>
+                </div>
+                <p style="margin: 0; color: var(--text-medium); line-height: 1.9; font-size: 1.05rem; text-align: right;">
+                    نختتم البرنامج بهذه المحاضرة التطبيقية التي تجمع كل ما تعلمناه، حيث نتعلم كيف نجعل الفاتحة حية في صلاتنا من خلال التدبر والتفكر، وتطبيق معانيها في الحياة اليومية، مع مراجعة شاملة لجميع المحاضرات.
+                </p>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section class="registration-section" id="registration">
+            <h2 class="section-title">ابدأ رحلتك التعليمية الآن</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.8;">
+                الصَّلاةُ عِمادُ الدِّينِ. هذه رحلتك لتعلم كيف تجعل الفاتحة حية في صلاتك، وكيف تذوق رحلتها الروحية.
+            </p>
+            <div class="registration-form">
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل *</label>
+                        <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني *</label>
+                        <input type="email" id="email" name="email" required placeholder="example@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="05xxxxxxxx">
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">مستوى خبرتك في علوم القرآن</label>
+                        <select id="experience" name="experience">
+                            <option value="beginner">مبتدئ</option>
+                            <option value="intermediate">متوسط</option>
+                            <option value="advanced">متقدم</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-button">إرسال طلب التسجيل</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <h2 class="section-title">ماذا يقول طلابنا</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "البرنامج غيّر صلاتي تماماً. الآن أزوق الفاتحة وأشعر برحلتها الروحية. كل آية أصبحت لها معنى عميق في قلبي. الصلاة لم تعد مجرد حركات، بل أصبحت رحلة حقيقية يتدرج فيها قلبي من درجة إلى درجة."
+                    </div>
+                    <div class="testimonial-author">- أحمد محمد، خريج الدفعة السابقة</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "وجدت الراحة التي كنت أبحث عنها. الآن أقول 'أرحنا بها' وأجدها حقاً. البرنامج علمني كيف أستحضر معاني الفاتحة في كل ركعة، وكيف يكون الخشوع حالة قلبية وليس مجرد خفض للبصر."
+                    </div>
+                    <div class="testimonial-author">- فاطمة علي، طالبة</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "من صلّى صحيحاً، أقام الله له الحياة. هذا ما تعلمته. البرنامج لم يعلّمني فقط عن الفاتحة، بل علّمني كيف أحيا بالصلاة. الآن صلاتي هي قرّة عيني وبلسم قلبي."
+                    </div>
+                    <div class="testimonial-author">- خالد عبدالله، مشارك</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن البرنامج</h3>
+                    <p>رحلة روحية عميقة لاستكشاف كنز الفاتحة - السورة التي قسمت الصلاة بين العبد وربه. نتعلم كيف نجعلها حية في صلاتنا، وكيف نزوق رحلتها الروحية بكل درجاته. من صلّى صحيحاً مع الاستحضار والخشوع، أقام الله له الحياة.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>معلومات التواصل</h3>
+                    <a href="https://wa.me/201062310248" target="_blank">
+                        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        +201062310248
+                    </a>
+                    <a href="mailto:info@quranprogram.com">
+                        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px;">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        info@quranprogram.com
+                    </a>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p>&copy; 2025 برنامج مدارسة سورة الفاتحة وتصحيح تلاوتها. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <script>
+        /*
+         * ============================================
+         * EMAILJS SETUP INSTRUCTIONS
+         * ============================================
+         * 
+         * To enable email functionality, follow these steps:
+         * 
+         * 1. Create a free account at: https://www.emailjs.com/
+         * 
+         * 2. Go to Email Services and add your email service (Gmail, Outlook, etc.)
+         *    - Follow the connection wizard
+         *    - Note your Service ID
+         * 
+         * 3. Go to Email Templates and create a new template:
+         *    - Template Name: "Quran Program Registration"
+         *    - Subject: "طلب تسجيل جديد - برنامج مدارسة سورة الفاتحة"
+         *    - Content (HTML):
+         *      <h2>طلب تسجيل جديد</h2>
+         *      <p><strong>الاسم:</strong> {{from_name}}</p>
+         *      <p><strong>البريد الإلكتروني:</strong> {{from_email}}</p>
+         *      <p><strong>رقم الهاتف:</strong> {{phone}}</p>
+         *      <p><strong>مستوى الخبرة:</strong> {{experience}}</p>
+         *      <p><strong>تاريخ التقديم:</strong> {{submission_date}}</p>
+         *      <hr>
+         *      <p>{{message}}</p>
+         *    - Note your Template ID
+         * 
+         * 4. Go to Account > API Keys and copy your Public Key
+         * 
+         * 5. Replace the following placeholders in the code below:
+         *    - YOUR_PUBLIC_KEY: Your EmailJS Public Key
+         *    - YOUR_SERVICE_ID: Your Email Service ID
+         *    - YOUR_TEMPLATE_ID: Your Email Template ID
+         *    - your-email@example.com: Your actual email address
+         * 
+         * ============================================
+         */
+        
+        // Initialize EmailJS
+        // EmailJS initialized with public key
+        emailjs.init("Cvr4J4Be4ibRxRMeF");
+        
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitButton = form.querySelector('.submit-button');
+            const originalButtonText = submitButton.textContent;
+            
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'جاري الإرسال...';
+            submitButton.style.opacity = '0.7';
+            submitButton.style.cursor = 'not-allowed';
+            
+            // Collect form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                experience: document.getElementById('experience').value,
+                experience_text: document.getElementById('experience').selectedOptions[0].text,
+                submission_date: (function() {
+                    const now = new Date();
+                    const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 
+                                   'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+                    const day = now.getDate();
+                    const month = months[now.getMonth()];
+                    const year = now.getFullYear();
+                    const hours24 = now.getHours();
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const ampm = hours24 >= 12 ? 'م' : 'ص';
+                    const displayHours = hours24 === 0 ? 12 : (hours24 > 12 ? hours24 - 12 : hours24);
+                    return `${day} ${month} ${year} في ${displayHours}:${minutes} ${ampm}`;
+                })()
+            };
+            
+            // Send email using EmailJS
+            // Send admin notification email (only one email to admin)
+            emailjs.send('service_qc5k53g', 'template_nl26k4v', {
+                email: formData.email, // This populates {{email}} in template's "To Email" field
+                name: formData.name, // For {{name}} in "From Name" field
+                from_name: formData.name, // For {{from_name}} in email body
+                from_email: formData.email, // For {{from_email}} in email body
+                reply_to: formData.email, // For Reply To field
+                phone: formData.phone, // For {{phone}} in email body
+                experience: formData.experience_text, // For {{experience}} in email body
+                submission_date: formData.submission_date // For {{submission_date}} in email body
+            })
+            .then(function(response) {
+                // Success
+                submitButton.textContent = '✓ تم الإرسال بنجاح!';
+                submitButton.style.background = 'linear-gradient(135deg, #14a085 0%, #2dd4bf 100%)';
+                
+                // Show success message
+                showMessage('success', 'شكراً لك! تم إرسال طلب التسجيل بنجاح. سنتواصل معك قريباً.');
+                
+                // Reset form
+                form.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                    submitButton.style.opacity = '1';
+                    submitButton.style.cursor = 'pointer';
+                    submitButton.style.background = 'var(--gradient-gold)';
+                }, 3000);
+            })
+            .catch(function(error) {
+                // Error
+                console.error('EmailJS Error:', error);
+                submitButton.textContent = '✗ فشل الإرسال';
+                submitButton.style.background = 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)';
+                
+                // Show error message
+                showMessage('error', 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة.');
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                    submitButton.style.opacity = '1';
+                    submitButton.style.cursor = 'pointer';
+                    submitButton.style.background = 'var(--gradient-gold)';
+                }, 3000);
+            });
+        });
+        
+        // Function to show success/error messages
+        function showMessage(type, message) {
+            // Remove existing messages
+            const existingMessage = document.querySelector('.form-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Create message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `form-message form-message-${type}`;
+            messageDiv.textContent = message;
+            
+            // Insert message before form
+            const form = document.getElementById('registrationForm');
+            form.parentNode.insertBefore(messageDiv, form);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transform = 'translateY(-10px)';
+                setTimeout(() => messageDiv.remove(), 300);
+            }, 5000);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

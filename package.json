@@ -1,0 +1,17 @@
+{
+  "name": "quran-program-announcement",
+  "version": "1.0.0",
+  "description": "Quran Program Announcement Landing Page",
+  "main": "quran_program_announcement.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "quran",
+    "islamic",
+    "education"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+
