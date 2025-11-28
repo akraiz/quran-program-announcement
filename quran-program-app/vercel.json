@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/quran-program-app/quran_program_announcement.html"
+    }
+  ]
+}
+
