@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملصق دعائي - برنامج مدارسة سورة الفاتحة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Enhanced Color Palette */
+            --primary-green: #0a5d61;
+            --primary-green-light: #0d7377;
+            --secondary-green: #14a085;
+            --secondary-green-light: #2dd4bf;
+            --accent-gold: #eab308;
+            --accent-gold-dark: #ca8a04;
+            --accent-gold-light: #fcd34d;
+            --dark-blue: #0f172a;
+            --dark-blue-light: #1a365d;
+            --white: #ffffff;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            --gradient-hero: linear-gradient(180deg, var(--primary-green) 0%, var(--secondary-green) 50%, var(--dark-blue) 100%);
+            --gradient-gold: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+            direction: rtl;
+        }
+
+        /* Container for both posters */
+        .poster-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Vertical Poster - 9:16 (1080x1920) - Instagram Stories/WhatsApp Status */
+        .poster-vertical {
+            width: 540px; /* نصف الحجم للعرض على الشاشة */
+            height: 960px; /* نصف الحجم للعرض على الشاشة */
+            max-width: 100%;
+            aspect-ratio: 9 / 16;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+            /* Safe zone: keep content within 80% of width and height */
+            padding: 6% 10%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Square Poster - 1:1 (1080x1080) - Instagram Feed/WhatsApp */
+        .poster-square {
+            width: 540px; /* نصف الحجم للعرض على الشاشة */
+            height: 540px; /* نصف الحجم للعرض على الشاشة */
+            max-width: 100%;
+            aspect-ratio: 1 / 1;
+            background: var(--gradient-primary);
+            position: relative;
+            overflow: hidden;
+            padding: 5% 8%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Decorative circles */
+        .poster-vertical::before,
+        .poster-square::before {
+            content: '';
+            position: absolute;
+            top: -15%;
+            right: -10%;
+            width: 65%;
+            height: 65%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(234, 179, 8, 0.08) 40%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(40px);
+        }
+
+        .poster-vertical::after,
+        .poster-square::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -8%;
+            width: 55%;
+            height: 55%;
+            background: radial-gradient(circle, rgba(20, 160, 133, 0.15) 0%, rgba(234, 179, 8, 0.08) 40%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(35px);
+        }
+
+        /* Content wrapper */
+        .poster-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .poster-content > div:first-child {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header section */
+        .poster-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .quran-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 0.7rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: transparent !important;
+        }
+
+        .quran-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 1 !important;
+            display: block;
+            position: relative;
+            z-index: 101;
+            background: transparent !important;
+            mix-blend-mode: normal !important;
+            /* Remove filter to show original icon colors */
+        }
+
+        .poster-title {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 0.7rem;
+            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.3;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .poster-subtitle {
+            font-size: 1.2rem;
+            color: var(--white);
+            font-weight: 400;
+            opacity: 0.96;
+            margin-bottom: 0.7rem;
+            text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.4);
+            letter-spacing: 0.3px;
+            text-align: center;
+        }
+
+        .poster-verse {
+            font-family: 'Amiri', serif;
+            font-size: 1.05rem;
+            color: var(--accent-gold-light);
+            font-style: italic;
+            text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Main highlight */
+        .main-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .main-highlight h2 {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            color: var(--accent-gold-light);
+            margin-bottom: 0.7rem;
+            text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .main-highlight p {
+            font-size: 1rem;
+            color: var(--white);
+            font-weight: 600;
+            line-height: 1.6;
+            text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        /* Features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 1.1rem 0.7rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-number {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--accent-gold); /* Fallback for browsers without gradient text support */
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+            text-shadow: 2px 2px 8px rgba(234, 179, 8, 0.3);
+            line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(234, 179, 8, 0.4));
+            text-align: center;
+            display: block;
+        }
+
+        .feature-label {
+            font-size: 0.85rem;
+            color: var(--white);
+            font-weight: 700;
+            text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.4);
+            line-height: 1.3;
+            letter-spacing: 0.2px;
+            text-align: center;
+        }
+
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            margin-top: auto;
+            padding: 0;
+        }
+
+        .cta-section h3 {
+            font-family: 'Amiri', serif;
+            font-size: 1.75rem;
+            color: var(--accent-gold-light);
+            margin: 0;
+            text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        /* Date section */
+        .date-section {
+            background: rgba(234, 179, 8, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 1.2rem 1rem;
+            border-radius: 14px;
+            text-align: center;
+            border: 2px solid rgba(234, 179, 8, 0.4);
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 20px rgba(234, 179, 8, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .date-section .date-label {
+            font-size: 0.85rem;
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.4);
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        .date-section .date-value {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--accent-gold-light);
+            font-weight: 700;
+            text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        /* Square poster adjustments */
+        .poster-square .poster-title {
+            font-size: 1.8rem;
+        }
+
+        .poster-square .poster-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .poster-square .main-highlight h2 {
+            font-size: 1.5rem;
+        }
+
+        .poster-square .main-highlight p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .poster-square .feature-number {
+            font-size: 2rem;
+        }
+
+        .poster-square .feature-label {
+            font-size: 0.8rem;
+        }
+
+        .poster-square .cta-section h3 {
+            font-size: 1.5rem;
+        }
+
+        .poster-square .date-section {
+            padding: 1rem 0.8rem;
+        }
+
+        .poster-square .date-section .date-label {
+            font-size: 0.75rem;
+        }
+
+        .poster-square .date-section .date-value {
+            font-size: 1.1rem;
+        }
+
+        /* Label for each poster */
+        .poster-label {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .poster-vertical,
+            .poster-square {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        /* Print/Screenshot - Full size */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .poster-wrapper {
+                gap: 0;
+            }
+
+            .poster-label {
+                display: none;
+            }
+
+            .poster-vertical {
+                width: 1080px;
+                height: 1920px;
+                padding: 6% 10%;
+            }
+
+            .poster-square {
+                width: 1080px;
+                height: 1080px;
+                padding: 5% 8%;
+            }
+        }
+
+        /* For screenshot tools - use this class */
+        .screenshot-mode .poster-vertical {
+            width: 1080px;
+            height: 1920px;
+        }
+
+        .screenshot-mode .poster-square {
+            width: 1080px;
+            height: 1080px;
+        }
+    </style>
+</head>
+<body>
+    <div class="poster-wrapper">
+        <!-- Vertical Poster - 9:16 (1080x1920) -->
+        <div>
+            <div class="poster-label">ملصق عمودي (9:16) - Instagram Stories / WhatsApp Status</div>
+            <div class="poster-vertical">
+                <div class="poster-content">
+                    <div>
+                        <div class="poster-header">
+                            <div class="quran-icon" style="background: transparent;">
+                                <img src="https://cdn-icons-png.freepik.com/512/13534/13534590.png" alt="Quran Icon" style="background: transparent; mix-blend-mode: normal; filter: none !important;" />
+                            </div>
+                            <h1 class="poster-title">برنامج مدارسة<br>سورة الفاتحة<br>وتصحيح تلاوتها</h1>
+                            <p class="poster-subtitle">رحلة تعليمية نحو فهم السبع المثاني</p>
+                            <p class="poster-verse">"وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ"</p>
+                        </div>
+
+                        <div class="main-highlight">
+                            <h2>ابدأ رحلتك مع سورة الفاتحة</h2>
+                            <p>الصَّلاةُ عِمادُ الدِّينِ. هذه رحلتك لتعلم كيف تجعل الفاتحة حية في صلاتك، وكيف تذوق رحلتها الروحية.</p>
+                        </div>
+
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-number">10</div>
+                                <div class="feature-label">محاضرات أونلاين متخصصة</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-number">30</div>
+                                <div class="feature-label">مقعد متاح</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-number" style="font-size: 2rem;">📖</div>
+                                <div class="feature-label">مشايخ حاصلون على إجازة</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-number" style="font-size: 2rem;">👤</div>
+                                <div class="feature-label">تلاوة وتصحيح فردي</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="date-section">
+                        <div class="date-label">تاريخ بداية الدفعة القادمة</div>
+                        <div class="date-value">7 ديسمبر 2025</div>
+                    </div>
+
+                    <div class="cta-section">
+                        <h3>سجل الآن واحجز مقعدك</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Square Poster - 1:1 (1080x1080) -->
+        <div>
+            <div class="poster-label">ملصق مربع (1:1) - Instagram Feed / WhatsApp</div>
+            <div class="poster-square">
+                <div class="poster-content">
+                    <div>
+                        <div class="poster-header">
+                            <div class="quran-icon" style="width: 60px; height: 60px; background: transparent;">
+                                <img src="https://cdn-icons-png.freepik.com/512/13534/13534590.png" alt="Quran Icon" style="filter: none !important; background: transparent;" />
+                            </div>
+                            <h1 class="poster-title">برنامج مدارسة سورة الفاتحة وتصحيح تلاوتها</h1>
+                            <p class="poster-subtitle">رحلة تعليمية نحو فهم السبع المثاني</p>
+                            <p class="poster-verse">"وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ"</p>
+                        </div>
+
+                        <div class="main-highlight">
+                            <h2>ابدأ رحلتك مع سورة الفاتحة</h2>
+                            <p>الصَّلاةُ عِمادُ الدِّينِ. هذه رحلتك لتعلم كيف تجعل الفاتحة حية في صلاتك، وكيف تذوق رحلتها الروحية.</p>
+                        </div>
+
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-number">10</div>
+                                <div class="feature-label">محاضرات أونلاين</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-number">30</div>
+                                <div class="feature-label">مقعد</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-number" style="font-size: 1.5rem;">📖</div>
+                                <div class="feature-label">مشايخ مجازون</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-number" style="font-size: 1.5rem;">👤</div>
+                                <div class="feature-label">تصحيح فردي</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="date-section">
+                        <div class="date-label">تاريخ بداية الدفعة القادمة</div>
+                        <div class="date-value">7 ديسمبر 2025</div>
+                    </div>
+
+                    <div class="cta-section">
+                        <h3>سجل الآن واحجز مقعدك</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Instructions for screenshot
+        console.log('لتصدير الملصق كصورة:');
+        console.log('1. استخدم Browser Screenshot extension');
+        console.log('2. أو اضغط Print Screen بعد ضبط الحجم');
+        console.log('3. الأبعاد الدقيقة: 1080x1920 (عمودي) و 1080x1080 (مربع)');
+    </script>
+</body>
+</html>
