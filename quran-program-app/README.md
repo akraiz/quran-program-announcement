@@ -8,12 +8,15 @@ A beautiful, responsive landing page for the Quran Program announcement and regi
 quran-program-app/
 ├── quran_program_announcement.html  # Main landing page
 ├── quran_program_teaser_poster.html # Teaser poster page
-├── vercel.json                      # Vercel deployment configuration
 ├── package.json                     # Project metadata
 ├── og-image-generator.html          # Tool to generate social media preview image
 ├── og-image.svg                     # SVG version of social preview
 ├── DEPLOYMENT_GUIDE.md             # Deployment instructions
-└── SOCIAL_MEDIA_IMAGE_INSTRUCTIONS.md # Social media setup guide
+├── SOCIAL_MEDIA_IMAGE_INSTRUCTIONS.md # Social media setup guide
+├── EMAIL_SETUP_INSTRUCTIONS.md     # EmailJS setup guide
+├── EMAIL_FOOTER_CODE.html          # Email footer template
+├── EMAILJS_TEMPLATE_BODY_WITH_FOOTER.html # Email template with footer
+└── STUDENT_EMAIL_FIX.md            # Email configuration fixes
 ```
 
 ## 🚀 Live Site
@@ -58,7 +61,7 @@ The registration form uses EmailJS to send registration emails.
 - Template ID: `template_nl26k4v`
 - Public Key: `Cvr4J4Be4ibRxRMeF`
 
-See `EMAIL_SETUP_INSTRUCTIONS.md` in parent directory for setup details.
+See `EMAIL_SETUP_INSTRUCTIONS.md` in this folder for setup details.
 
 ## 🎨 Features
 
@@ -77,8 +80,11 @@ See `EMAIL_SETUP_INSTRUCTIONS.md` in parent directory for setup details.
 - All external resources use CDN links
 - Fonts loaded from Google Fonts (Amiri, Cairo)
 
-## 🔗 Related Files
+## 📁 File Organization
 
-- Email templates and setup: See parent directory `EMAIL_*` files
-- Audio processing scripts: See parent directory `*audio*.py` files
+All app-related files are contained in this folder:
+- **HTML Pages**: Landing page and teaser poster
+- **Email Templates**: EmailJS configuration and templates
+- **Social Media**: OG image generators and instructions
+- **Documentation**: Setup guides and deployment instructions
 
